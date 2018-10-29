@@ -14,4 +14,11 @@ Rails.application.routes.draw do
   post '/sessions/create', to: "sessions#create"
   post '/sessions/update', to: "sessions#update"
   post '/sessions/destroy', to: "sessions#destroy"
+
+  get '/courses', to: "courses#display"
+  get '/units', to: "units#display"
+  get '/chapters', to: "chapters#display"
+  get '/lessons', to: "lessons#display"
+  get '/sessions', to: "sessions#display"
+
 end
