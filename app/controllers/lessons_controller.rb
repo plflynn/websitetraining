@@ -7,6 +7,11 @@ class LessonsController < ApplicationController
     )
   end
 
+  def update
+    Lesson.find(params[:lesson_id]).update!(title:params[:title]) if params[:title]
+    Lesson.find(params[:lesson_id]).update!(chapter_id:params[:chapter_id]) if params[:chapter_id]
+  end
+
   def destroy
     lesson = Lesson.find(params[:lesson_id])
     lesson.destroy

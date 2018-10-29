@@ -8,7 +8,8 @@ class ChaptersController < ApplicationController
   end
 
   def update
-
+    Chapter.find(params[:chapter_id]).update!(title:params[:title]) if params[:title]
+    Chapter.find(params[:chapter_id]).update!(unit_id:params[:unit_id]) if params[:unit_id]
   end
 
   def destroy

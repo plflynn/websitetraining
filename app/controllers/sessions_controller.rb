@@ -7,6 +7,11 @@ class SessionsController < ApplicationController
     )
   end
 
+  def update
+    Session.find(params[:session_id]).update!(title:params[:title]) if params[:title]
+    Session.find(params[:session_id]).update!(lesson_id:params[:lesson_id]) if params[:lesson_id]
+  end
+
   def destroy
     session = Session.find(params[:session_id])
     session.destroy
