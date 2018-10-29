@@ -2,7 +2,8 @@ class ChaptersController < ApplicationController
 
   def create
     Chapter.create!(
-      title: params[:title]
+      title: params[:title],
+      unit_id: params[:unit_id]
     )
   end
 
@@ -11,7 +12,8 @@ class ChaptersController < ApplicationController
   end
 
   def destroy
-
+    chapter = Chapter.find(params[:chapter_id])
+    chapter.destroy
   end
 
   def display
