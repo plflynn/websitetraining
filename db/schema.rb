@@ -10,12 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_115106) do
+ActiveRecord::Schema.define(version: 2018_10_29_120629) do
+
+  create_table "chapters", force: :cascade do |t|
+    t.string "title"
+    t.integer "unit_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["unit_id"], name: "index_chapters_on_unit_id"
+  end
 
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.string "title"
+    t.integer "chapter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chapter_id"], name: "index_lessons_on_chapter_id"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string "title"
+    t.integer "lesson_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_sessions_on_lesson_id"
   end
 
   create_table "units", force: :cascade do |t|
