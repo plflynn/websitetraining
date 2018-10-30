@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_30_135303) do
+ActiveRecord::Schema.define(version: 2018_10_30_165815) do
 
   create_table "chapters", force: :cascade do |t|
     t.string "title"
@@ -34,11 +34,29 @@ ActiveRecord::Schema.define(version: 2018_10_30_135303) do
     t.index ["chapter_id"], name: "index_lessons_on_chapter_id"
   end
 
+  create_table "question_type_skill_relations", force: :cascade do |t|
+    t.integer "question_type_id"
+    t.integer "skill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_type_id"], name: "index_question_type_skill_relations_on_question_type_id"
+    t.index ["skill_id"], name: "index_question_type_skill_relations_on_skill_id"
+  end
+
   create_table "question_types", force: :cascade do |t|
     t.string "title"
     t.integer "exp"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "session_skill_relations", force: :cascade do |t|
+    t.integer "session_id"
+    t.integer "skill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["session_id"], name: "index_session_skill_relations_on_session_id"
+    t.index ["skill_id"], name: "index_session_skill_relations_on_skill_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -47,6 +65,13 @@ ActiveRecord::Schema.define(version: 2018_10_30_135303) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_sessions_on_lesson_id"
+  end
+
+  create_table "skill_trees", force: :cascade do |t|
+    t.bigint "parent_skill_id"
+    t.bigint "child_skill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "skills", force: :cascade do |t|
@@ -63,6 +88,15 @@ ActiveRecord::Schema.define(version: 2018_10_30_135303) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_units_on_course_id"
+  end
+
+  create_table "user_skill_relations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "skill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["skill_id"], name: "index_user_skill_relations_on_skill_id"
+    t.index ["user_id"], name: "index_user_skill_relations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
