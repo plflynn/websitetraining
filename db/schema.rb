@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_120629) do
+ActiveRecord::Schema.define(version: 2018_10_30_135303) do
 
   create_table "chapters", force: :cascade do |t|
     t.string "title"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 2018_10_29_120629) do
     t.index ["chapter_id"], name: "index_lessons_on_chapter_id"
   end
 
+  create_table "question_types", force: :cascade do |t|
+    t.string "title"
+    t.integer "exp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.string "title"
     t.integer "lesson_id"
@@ -42,12 +49,26 @@ ActiveRecord::Schema.define(version: 2018_10_29_120629) do
     t.index ["lesson_id"], name: "index_sessions_on_lesson_id"
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.string "title"
+    t.integer "base_exp"
+    t.integer "master_exp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "units", force: :cascade do |t|
     t.string "title"
     t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_units_on_course_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
